@@ -1,0 +1,17 @@
+<!-- public/index.html -->
+<form id="feedbackForm">
+  <textarea id="feedback"></textarea>
+  <button type="submit">Send</button>
+</form>
+<script>
+  document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const feedback = document.getElementById('feedback').value;
+    await fetch('https://REGION-PROJECT_ID.cloudfunctions.net/submitFeedback', {
+      method: 'POST',
+      body: JSON.stringify({ feedback }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    alert('Feedback sent!');
+  });
+</script>
